@@ -23,29 +23,20 @@ const Login = ({ navigation }) => {
     }
 
     try {
-      const fcmtoken = await AsyncStorage.getItem("fcmtoken");
       const response = await axios.post('https://tiffin-wala-backend.vercel.app/api/auth/login', {
         email,
         password,
-        fcmtoken
       });
       
       Alert.alert('Login Successful', response.data.message);
       await AsyncStorage.setItem('token',response.data.token );
-      console.log('token',response.data.token );
-      // Navigate to the main screen or store the token
-      // navigation.navigate("HomeTabs");
-      console.log("response.data.user: ",response.data.user.role)
-      await AsyncStorage.setItem("role",response.data.user.role);
+      // await AsyncStorage.setItem('role',"delivery" );
 
-      if(response.data.user.role=='customer'){
-        navigation.navigate("HomeTabs");
-      }
-      else{
-        navigation.navigate("DeliveryNavigator");
-      }
 
-      
+    // Fetch the updated role and trigger the navigation update
+    // const role = await AsyncStorage.getItem('role');
+    // navigation.navigate("Deliveries");
+
 
     } catch (error) {
       Alert.alert('Login Failed', error.response?.data?.message || 'Error occurred');

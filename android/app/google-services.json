@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447689203790",
+    "project_id": "tiffinwala-5f83f",
+    "storage_bucket": "tiffinwala-5f83f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447689203790:android:676cd3277c0002845aa31f",
+        "android_client_info": {
+          "package_name": "com.qrcodescannerreactnative"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6YA2PV1Mpkj17YPN4HEe1SsU-gLLYLOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
