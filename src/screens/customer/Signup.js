@@ -98,7 +98,7 @@ const Signup = () => {
       />
       <TextInput
         style={styles.input}
-        placeholder="Address"
+        placeholder="Please Enter Full Address"
         value={address}
         onChangeText={setAddress}
       />

@@ -135,6 +135,8 @@ import TiffinCollection from './src/screens/delivery/TiffinCollection';
 import ProfileDelievery from './src/screens/delivery/Profile';
 import useDeliveries from './src/hooks/useDelivery';
 
+import { PermissionsAndroid } from 'react-native';
+
 export const DeliveryContext = createContext();
 
 const BottomTabs = () => {
@@ -243,6 +245,20 @@ const App = () => {
   }
 
 
+
+
+const requestNotificationPermission = async () => {
+  if (Platform.OS === 'android' && Platform.Version >= 33) {
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS
+    );
+    if (granted !== PermissionsAndroid.RESULTS.GRANTED) {
+      console.warn('Notification permission denied');
+    }
+  }
+};
+
+
   const getFcmToken = async () => {
     const token = await messaging().getToken();
     console.log('Device Token:', token);
@@ -264,6 +280,7 @@ const App = () => {
     requestUserPermission();
     getRole();
     getFcmToken();
+    requestNotificationPermission()
 
     // Configure notifications
     PushNotification.configure({
@@ -309,7 +326,24 @@ const App = () => {
       if (deliveryId) {
         console.log('Notification has deliveryId:', deliveryId);
         setDeliveryUserId(deliveryId)
+        await AsyncStorage.setItem('showTiffinBanner', 'true');
+        // setRefreshData((prev) => !prev);
         // You can use this deliveryId in your app, for example, to navigate to a detailed screen
+      }
+    });
+
+
+
+
+
+    messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+      console.log('Background notification received:', remoteMessage);
+    
+      const { deliveryId } = remoteMessage?.data;
+    
+      if (deliveryId) {
+        console.log('Background notification has deliveryId:', deliveryId);
+        await AsyncStorage.setItem('showTiffinBanner', 'true');
       }
     });
 
@@ -323,6 +357,7 @@ const App = () => {
 <DeliveryContext.Provider value={{ refreshData, setRefreshData,deliveryUserId,setDeliveryUserId,redundedRefresh }}>
       <NavigationContainer>
         <Stack.Navigator  initialRouteName="Login">
+        {/* <Stack.Navigator  initialRouteName="HomeTabs"> */}
         <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
         <Stack.Screen name="QRCodeScanner" component={QRCodeScanner} options={{ headerShown: false }} />

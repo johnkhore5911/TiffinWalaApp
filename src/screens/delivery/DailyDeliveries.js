@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { View, Text, FlatList, StyleSheet, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Alert, TouchableOpacity,Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { DeliveryContext } from '../../../App';
@@ -114,6 +114,14 @@ const DailyDeliveries = () => {
         </Text>
       </View>
 
+
+      <TouchableOpacity
+        style={styles.mapButton}
+        onPress={() => openInMaps(item.customer.address)}
+      >
+        <Text style={styles.mapButtonText}>Open in Maps</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity
         style={[styles.button, item.status === 'Delivered' && styles.disabledButton]}
         onPress={() => markDelivered(item._id)}
@@ -125,6 +133,17 @@ const DailyDeliveries = () => {
       </TouchableOpacity>
     </View>
   );
+
+
+
+  const openInMaps = (address) => {
+    const encodedAddress = encodeURIComponent(address);
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+    Linking.openURL(url).catch((err) =>
+      Alert.alert('Error', 'Unable to open the address in maps.')
+    );
+  };
+
 
   return (
     <View style={styles.container}>
@@ -145,6 +164,19 @@ const DailyDeliveries = () => {
 };
 
 const styles = StyleSheet.create({
+  mapButton: {
+    paddingVertical: 10,
+    backgroundColor: '#28a745',
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom:5
+  },
+  mapButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   container: { padding: 20, backgroundColor: '#f8f8f8', flex: 1 },
   header: { fontSize: 22, fontWeight: 'bold', marginBottom: 15, textAlign: 'center' },
   emptyMessage: { textAlign: 'center', fontSize: 16, color: '#888', marginTop: 50 },
