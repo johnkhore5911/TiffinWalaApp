@@ -146,10 +146,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f7f9fc',
+    backgroundColor: '#FFF0F1D1',
   },
   header: {
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   button: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#FD3245',
     paddingVertical: 12,
     paddingHorizontal: 10,
     borderRadius: 8,

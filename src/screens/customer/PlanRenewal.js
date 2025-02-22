@@ -57,7 +57,7 @@ const PlanRenewal = () => {
     <View style={styles.container}>
       <Text style={styles.header}>Renew Your Plan</Text>
       {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
+        <ActivityIndicator size="large" color="#333"/>
       ) : (
         <FlatList
           data={plans}
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#f9f9f9',
+    backgroundColor: '#FFF0F1D1',
   },
   header: {
     fontSize: 24,
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   },
   renewButton: {
     marginTop: 10,
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#FD3245',
     paddingVertical: 12,
     borderRadius: 6,
     alignItems: 'center',

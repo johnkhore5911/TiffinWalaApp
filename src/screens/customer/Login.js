@@ -86,6 +86,57 @@ const Login = ({ navigation }) => {
   );
 };
 
+// const styles = StyleSheet.create({
+//   container: { 
+//     flex: 1, 
+//     justifyContent: 'center', 
+//     alignItems: 'center', 
+//     padding: 20, 
+//     backgroundColor: '#f7f9fc' 
+//   },
+//   title: { 
+//     fontSize: 28, 
+//     fontWeight: 'bold', 
+//     color: '#333', 
+//     marginBottom: 5 
+//   },
+//   subtitle: { 
+//     fontSize: 16, 
+//     color: '#666', 
+//     marginBottom: 20 
+//   },
+//   input: { 
+//     borderWidth: 1, 
+//     borderColor: '#ccc', 
+//     padding: 15, 
+//     marginBottom: 15, 
+//     borderRadius: 10, 
+//     width: '100%', 
+//     backgroundColor: '#fff' 
+//   },
+//   button: { 
+//     backgroundColor: '#007bff', 
+//     padding: 15, 
+//     borderRadius: 10, 
+//     width: '100%', 
+//     alignItems: 'center', 
+//     marginBottom: 10 
+//   },
+//   buttonText: { 
+//     color: '#fff', 
+//     fontWeight: 'bold', 
+//     fontSize: 16 
+//   },
+//   link: { 
+//     marginTop: 10 
+//   },
+//   linkText: { 
+//     color: '#007bff', 
+//     fontWeight: 'bold', 
+//     fontSize: 14 
+//   },
+// });
+
 const styles = StyleSheet.create({
   container: { 
     flex: 1, 
@@ -102,7 +153,7 @@ const styles = StyleSheet.create({
   },
   subtitle: { 
     fontSize: 16, 
-    color: '#666', 
+    color: '#333', 
     marginBottom: 20 
   },
   input: { 
@@ -115,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff' 
   },
   button: { 
-    backgroundColor: '#007bff', 
+    backgroundColor: '#FD3245', 
     padding: 15, 
     borderRadius: 10, 
     width: '100%', 
@@ -131,10 +182,11 @@ const styles = StyleSheet.create({
     marginTop: 10 
   },
   linkText: { 
-    color: '#007bff', 
+    color: '#FD3245', 
     fontWeight: 'bold', 
     fontSize: 14 
   },
 });
+
 
 export default Login;
