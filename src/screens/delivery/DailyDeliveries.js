@@ -4,6 +4,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import { DeliveryContext } from '../../../App';
 
+
+// const URL ="http://192.168.18.235:5173/api/";
+const URL ="https://tiffin-wala-backend.vercel.app/api/";
+
+
 const DailyDeliveries = () => {
   const [deliveries, setDeliveries] = useState([]);
   const [refreshing, setRefreshing] = useState(false);
@@ -24,12 +29,13 @@ const DailyDeliveries = () => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) {
-        throw new Error('User token not found');
+        // throw new Error('User token not found');
+        return;
       }
       console.log("token: ", token);
 
       const response = await axios.get(
-        'https://tiffin-wala-backend.vercel.app/api/userRoutes/getDeliverUserData',
+        `${URL}userRoutes/getDeliverUserData`,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -55,7 +61,8 @@ const DailyDeliveries = () => {
     try {
       const token = await AsyncStorage.getItem('token');
       if (!token) {
-        throw new Error('User token not found');
+        // throw new Error('User token not found');
+        return;
       }
 
       const payload = {
@@ -63,7 +70,7 @@ const DailyDeliveries = () => {
       };
 
       const response = await axios.post(
-        'https://tiffin-wala-backend.vercel.app/api/deliveryRoutes/notifyCustomerTiffin',
+        `${URL}deliveryRoutes/notifyCustomerTiffin`,
         payload,
         {
           headers: {
@@ -117,7 +124,9 @@ const DailyDeliveries = () => {
 
       <TouchableOpacity
         style={styles.mapButton}
-        onPress={() => openInMaps(item.customer.address)}
+        // onPress={() => openInMaps(item.customer.address)}
+        onPress={() => openInMaps(item.customer.address,item.customer.latitude,item.customer.longitude)}
+        // onPress={() => openInMaps(30.7474222, 76.7740056)}
       >
         <Text style={styles.mapButtonText}>Open in Maps</Text>
       </TouchableOpacity>
@@ -136,12 +145,37 @@ const DailyDeliveries = () => {
 
 
 
-  const openInMaps = (address) => {
-    const encodedAddress = encodeURIComponent(address);
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
-    Linking.openURL(url).catch((err) =>
-      Alert.alert('Error', 'Unable to open the address in maps.')
-    );
+  // const openInMaps = (address) => {
+    // const encodedAddress = encodeURIComponent(address);
+    // const url = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+    // Linking.openURL(url).catch((err) =>
+    //   Alert.alert('Error', 'Unable to open the address in maps.')
+    // );
+  // };
+  // const openInMaps = (latitude, longitude) => {
+  //   const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
+  //   Linking.openURL(url).catch((err) =>
+  //     Alert.alert('Error', 'Unable to open the location in maps.')
+  //   );
+  // };
+
+  const openInMaps = (address,latitude, longitude) => {
+    console.log("I have these data: ",address,latitude,latitude);
+    if(latitude){
+      console.log("I am using latitude and longitude block of code");
+      const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
+      Linking.openURL(url).catch((err) =>
+        Alert.alert('Error', 'Unable to open the location in maps.')
+      );
+    }
+    else{
+      console.log("I am using text address of the user");
+      const encodedAddress = encodeURIComponent(address);
+      const url = `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+      Linking.openURL(url).catch((err) =>
+        Alert.alert('Error', 'Unable to open the address in maps.')
+      );
+    }
   };
 
 

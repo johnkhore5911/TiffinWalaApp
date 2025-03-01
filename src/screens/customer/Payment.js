@@ -81,6 +81,7 @@ const Payment = () => {
         console.log(" mealPlanId: studentData._id: ", studentData._id );
         const token = await AsyncStorage.getItem('token');
         console.log("Token: ",token)
+        // 192.168.18.235
         const response = await axios.post('https://tiffin-wala-backend.vercel.app/api/userRoutes/updatePlan', 
           { mealPlanId: studentData._id }, 
           {

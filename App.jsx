@@ -135,6 +135,8 @@ import TiffinCollection from './src/screens/delivery/TiffinCollection';
 import ProfileDelievery from './src/screens/delivery/Profile';
 import useDeliveries from './src/hooks/useDelivery';
 
+import HomeScreenUI from './src/screens/customer/HomeScreen'
+
 import { PermissionsAndroid } from 'react-native';
 
 export const DeliveryContext = createContext();
@@ -145,26 +147,38 @@ const BottomTabs = () => {
       initialRouteName="HomeScreen"
       screenOptions={{
         tabBarStyle: { backgroundColor: '#f7f9fc' }, // Tab bar background
-        tabBarActiveTintColor: '#007bff', // Active tab color
+        tabBarActiveTintColor: '#e11d48', // Active tab color
         tabBarInactiveTintColor: '#aaa', // Inactive tab color
       }}
     >
-      <Tab.Screen
+      {/* <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
           headerShown:false,
-          tabBarIcon: ({ color }) => <Icon name="home" size={30} color={color} />
+          tabBarIcon: ({ color }) => <Icon name="home" size={25} color={color} />
+        }}
+      /> */}
+
+      <Tab.Screen
+        name="HomeScreen"
+        component={HomeScreenUI}
+        options={{
+          tabBarLabel: 'Home',
+          headerShown:false,
+          tabBarIcon: ({ color }) => <Icon name="home" size={25} color={color} />
         }}
       />
+
+
       <Tab.Screen
         name="MealCredits"
         component={MealCredits}
         options={{
-          tabBarLabel: 'Meal Credits',
+          tabBarLabel: 'Meal Plan',
           headerShown:false,
-          tabBarIcon: ({ color }) => <Icon name="credit-card" size={30} color={color} />
+          tabBarIcon: ({ color }) => <Icon name="credit-card" size={23} color={color} />
         }}
       />
       <Tab.Screen
@@ -173,7 +187,7 @@ const BottomTabs = () => {
         options={{
           tabBarLabel: 'Profile',
           headerShown:false,
-          tabBarIcon: ({ color }) => <Icon name="user" size={30} color={color} />
+          tabBarIcon: ({ color }) => <Icon name="user" size={23} color={color} />
         }}
       />
     </Tab.Navigator>
@@ -187,7 +201,7 @@ const DeliveryBoyNavigator = () => {
       initialRouteName="Deliveries"
       screenOptions={{
         tabBarStyle: { backgroundColor: '#f7f9fc' }, // Tab bar background
-        tabBarActiveTintColor: '#007bff', // Active tab color
+        tabBarActiveTintColor: '#e11d48', // Active tab color
         tabBarInactiveTintColor: '#aaa', // Inactive tab color
       }}
     >
@@ -197,7 +211,7 @@ const DeliveryBoyNavigator = () => {
         options={{
           tabBarLabel: 'Deliveries',
           headerShown:false,
-          tabBarIcon: ({ color }) => <Icon name="truck" size={30} color={color} />
+          tabBarIcon: ({ color }) => <Icon name="truck" size={25} color={color} />
         }}
       />
       <Tab.Screen
@@ -206,7 +220,7 @@ const DeliveryBoyNavigator = () => {
         options={{
           tabBarLabel: 'Collections',
           headerShown:false,
-          tabBarIcon: ({ color }) => <Icon name="shopping-bag" size={30} color={color} />
+          tabBarIcon: ({ color }) => <Icon name="shopping-bag" size={25} color={color} />
         }}
       />
       <Tab.Screen
@@ -215,7 +229,7 @@ const DeliveryBoyNavigator = () => {
         options={{
           tabBarLabel: 'Profile',
           headerShown:false,
-          tabBarIcon: ({ color }) => <Icon name="id-card" size={30} color={color} />
+          tabBarIcon: ({ color }) => <Icon name="id-card" size={25} color={color} />
         }}
       />
     </Tab.Navigator>

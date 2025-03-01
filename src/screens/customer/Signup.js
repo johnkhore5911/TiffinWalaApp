@@ -27,9 +27,12 @@ const Signup = () => {
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const [isRoleDropdownVisible, setRoleDropdownVisible] = useState(false); // Role dropdown visibility
   const navigation = useNavigation();
+  const [loading,setLoading] = useState("Signup");
+  
 
   const handleSignup = async () => {
     await AsyncStorage.setItem('role', role); // Save the selected role
+    setLoading("Signup...")
     
     if (!fname || !lname || !email || !password || !contact || !address || !mealPreferences) {
       Alert.alert('Error', 'All fields are required!');
@@ -56,6 +59,8 @@ const Signup = () => {
       navigation.navigate('Login');
     } catch (error) {
       Alert.alert('Signup Failed', error.response?.data?.message || 'Error occurred');
+    }finally{
+      setLoading("Signup")
     }
   };
 
@@ -205,8 +210,8 @@ const Signup = () => {
         </View>
       </Modal>
 
-      <TouchableOpacity style={styles.button} onPress={handleSignup}>
-        <Text style={styles.buttonText}>Signup</Text>
+      <TouchableOpacity style={[styles.button,{backgroundColor: loading=='Signup...' ? "#b81a3b":"#FD3245"}]} onPress={handleSignup}>
+        <Text style={styles.buttonText}>{loading}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -236,7 +241,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    padding: 15,
+    padding: 12,
     marginBottom: 15,
     borderRadius: 10,
     width: '100%',
@@ -246,7 +251,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: '#007bff',
+    // backgroundColor: '#007bff',
+    backgroundColor: '#2432FF91',
     padding: 15,
     borderRadius: 10,
     width: '100%',
